@@ -16,7 +16,3 @@
 - En la versión de móvil el margen se ve demasiado grande, por lo que resulta visualmente incómodo.
 - El tamaño de las letras en la versión horizontal deberían ser más grandes (a observación del corrector).
 - Las correcciones deberían mostrarse de forma más presentable y decorada.
-
-####OBSERVACIONES
-
-- Al subir los archivos a la plataforma de GitHub no funciona el acceso a las instrucciones, pero el corrector tiene en constancia que originalmente sí que funcionaba esta función.
