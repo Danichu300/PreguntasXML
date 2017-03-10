@@ -16,3 +16,7 @@
 - En la versión de móvil el margen se ve demasiado grande, por lo que resulta visualmente incómodo.
 - El tamaño de las letras en la versión horizontal deberían ser más grandes (a observación del corrector).
 - Las correcciones deberían mostrarse de forma más presentable y decorada.
+
+####OBSERVACIONES
+
+- En la versión _minified_ del proyecto no funciona el JavaScript, por lo que las funcionalidades del proyecto están inutilizadas, además de no poder verse los títulos de las preguntas ni las respuestas. Sin embargo, el corrector tiene constancia de que originalmente sí que funcionaba a la perfección.
