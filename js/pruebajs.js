@@ -1,10 +1,10 @@
 
+  
   //leer xml
   //poner titulo
   //al darle al boton corregir
   
-  var formElement=null;
-var numeroSecreto=null;
+var formElement=null;
 var respuestaSelect=null;
 var respuestaSelect2=null;
 var respuestaSelect3=null;
@@ -24,6 +24,7 @@ window.onload=function(){
 	
 	formElement=document.getElementById('myform');
  formElement.onsubmit=function(){
+	 if(comprobar()){
 	 inicializar();
      corregirTexto();
 	 corregirTexto2();
@@ -37,7 +38,9 @@ window.onload=function(){
 	 corregirSelect4();
 	 mostrar();
     presentarNota();
+	 }
    return false;
+	 
  }
  //	formElement=document.getElementById('myform');
   //leer xml
@@ -53,12 +56,13 @@ xhttp.onreadystatechange = function() {
 
 xhttp.open("GET", "https://rawgit.com/Danichu300/PreguntasXML/master/preguntasrandom.xml", true);
 xhttp.send();
+}
 
 function gestionarXml(dadesXml){
 var xmlDoc = dadesXml.responseXML;
   titulo= xmlDoc.getElementById('bodatoda001').getElementsByTagName('title')[0].innerHTML;
   ponerTitulo(titulo);
-  respuesta=xmlDoc.getElementsByTagName('answer')[0].innerHTML;
+  respuesta=xmlDoc.getElementById('bodatoda001').getElementsByTagName('answer')[0].innerHTML;
   titulo=titulo;
   
  var xmlDoc = dadesXml.responseXML;
@@ -68,94 +72,70 @@ var xmlDoc = dadesXml.responseXML;
   titulo=titulo; 
 
    var tituloCheckbox = xmlDoc.getElementById('bodatoda003').getElementsByTagName("title")[0].innerHTML;
- var opcionesCheckbox = [];
-
- var nopt = xmlDoc.getElementById("bodatoda003").getElementsByTagName('option').length;
- for (i = 0; i < nopt; i++) { 
-    opcionesCheckbox[i]=xmlDoc.getElementById("bodatoda003").getElementsByTagName('option')[i].innerHTML;
- }  
- ponerDatosCheckboxHtml(tituloCheckbox,opcionesCheckbox);
+var xpath="questions/question[@id='bodatoda003']/option";
+ var nodesCheckbox = xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE, null); 
+ ponerDatosCheckboxHtml(tituloCheckbox,nodesCheckbox);
  var nres = xmlDoc.getElementById("bodatoda003").getElementsByTagName("answer").length;
  for (i = 0; i < nres; i++) { 
    respuestasCheckbox[i]=xmlDoc.getElementById("bodatoda003").getElementsByTagName("answer")[i].innerHTML;
  }
+ 
     var tituloCheck = xmlDoc.getElementById('bodatoda004').getElementsByTagName("title")[0].innerHTML;
- var opcionesCheck = [];
- var nop = xmlDoc.getElementById("bodatoda004").getElementsByTagName('option').length;
- for (i = 0; i < nop; i++) { 
-     opcionesCheck[i]=xmlDoc.getElementById("bodatoda004").getElementsByTagName('option')[i].innerHTML;
- }  
- ponerDatosCheckHtml(tituloCheck,opcionesCheck);
+	var xpath="questions/question[@id='bodatoda004']/option";
+    var nodesCheckbox = xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE, null); 
+ ponerDatosCheckHtml(tituloCheck,nodesCheckbox);
  var nres1 = xmlDoc.getElementById("bodatoda004").getElementsByTagName('answer').length;
  for (i = 0; i < nres1; i++) { 
   respuestasCheck[i]=xmlDoc.getElementById("bodatoda004").getElementsByTagName("answer")[i].innerHTML;
  }
  
   var tituloSelect=xmlDoc.getElementById('bodatoda005').getElementsByTagName("title")[0].innerHTML;
- var opcionesSelect = [];
- var nopt = xmlDoc.getElementById("bodatoda005").getElementsByTagName('option').length;
-  for (i = 0; i < nopt; i++) { 
-    opcionesSelect[i] = xmlDoc.getElementById("bodatoda005").getElementsByTagName('option')[i].innerHTML;
- }
- ponerDatosSelectHtml(tituloSelect,opcionesSelect);
+ var xpath="questions/question[@id='bodatoda005']/option";
+  var nodesSelect = xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE, null);
+ ponerDatosSelectHtml(tituloSelect,nodesSelect);
  respuestaSelect=parseInt(xmlDoc.getElementsByTagName("answer")[4].innerHTML);
  
    var tituloSelectx=xmlDoc.getElementById('bodatoda006').getElementsByTagName("title")[0].innerHTML;
- var opcionesSelectx = [];
- var nopt = xmlDoc.getElementById("bodatoda006").getElementsByTagName('option').length;
-  for (i = 0; i < nopt; i++) { 
-    opcionesSelectx[i] = xmlDoc.getElementById("bodatoda006").getElementsByTagName('option')[i].innerHTML;
- }
- ponerDatosSelectHtmlx(tituloSelectx,opcionesSelectx);
+var xpath="questions/question[@id='bodatoda006']/option";
+  var nodesSelect = xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE, null);
+ ponerDatosSelectHtmlx(tituloSelectx,nodesSelect);
  respuestaSelect2=parseInt(xmlDoc.getElementsByTagName("answer")[5].innerHTML);
 
      var tituloRadio = xmlDoc.getElementById('bodatoda007').getElementsByTagName("title")[0].innerHTML;
- var opcionesRadio = [];
- var noR = xmlDoc.getElementById("bodatoda007").getElementsByTagName('option').length;
- for (i = 0; i < noR; i++) { 
-     opcionesRadio[i]=xmlDoc.getElementById("bodatoda007").getElementsByTagName('option')[i].innerHTML;
- }  
- ponerDatosRadioHtml(tituloRadio,opcionesRadio);
+var xpath = "questions/question[@id='bodatoda007']/option"; 
+var nodesRadio = xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE, null); 
+ ponerDatosRadioHtml(tituloRadio,nodesRadio);
  var nresrad = xmlDoc.getElementById("bodatoda007").getElementsByTagName('answer').length;
  for (i = 0; i < nresrad; i++) { 
   respuestasRadio[i]=xmlDoc.getElementById("bodatoda007").getElementsByTagName("answer")[i].innerHTML;
  }
 
     var tituloRadio1 = xmlDoc.getElementById('bodatoda008').getElementsByTagName("title")[0].innerHTML;
- var opcionesRadio1 = [];
- var noF = xmlDoc.getElementById("bodatoda008").getElementsByTagName('option').length;
- for (i = 0; i < noF; i++) { 
-     opcionesRadio1[i]=xmlDoc.getElementById("bodatoda008").getElementsByTagName('option')[i].innerHTML;
- }  
- ponerDatosRadio1Html(tituloRadio1,opcionesRadio1);
+var xpath = "questions/question[@id='bodatoda008']/option"; 
+var nodesRadio = xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE, null); 
+ ponerDatosRadio1Html(tituloRadio1,nodesRadio);
  var nresrad = xmlDoc.getElementById("bodatoda008").getElementsByTagName('answer').length;
  for (i = 0; i < nresrad; i++) { 
   respuestasRadio2[i]=xmlDoc.getElementById("bodatoda008").getElementsByTagName("answer")[i].innerHTML;
  }
- 
+
    var tituloMultiple=xmlDoc.getElementById('bodatoda009').getElementsByTagName("title")[0].innerHTML;
- var opcionesMultiple = [];
- var noM = xmlDoc.getElementById("bodatoda009").getElementsByTagName('option').length;
-  for (i = 0; i < noM; i++) { 
-    opcionesMultiple[i] = xmlDoc.getElementById("bodatoda009").getElementsByTagName('option')[i].innerHTML;
- }
- ponerDatosMultipleHtml(tituloMultiple,opcionesMultiple);
+var xpath = "questions/question[@id='bodatoda009']/option";
+var nodesMultiple = xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE, null);
+ ponerDatosMultipleHtml(tituloMultiple,nodesMultiple);
  respuestaSelect3=parseInt(xmlDoc.getElementsByTagName("answer")[8].innerHTML);
  respuestaSelect31=parseInt(xmlDoc.getElementsByTagName("answer")[9].innerHTML);
- 
+
     var tituloMultiple=xmlDoc.getElementById('bodatoda010').getElementsByTagName("title")[0].innerHTML;
- var opcionesMultiple = [];
- var noM1 = xmlDoc.getElementById("bodatoda010").getElementsByTagName('option').length;
-  for (i = 0; i < noM1; i++) { 
-    opcionesMultiple[i] = xmlDoc.getElementById("bodatoda010").getElementsByTagName('option')[i].innerHTML;
- }
- ponerDatosMultiple1Html(tituloMultiple,opcionesMultiple);
+var xpath = "questions/question[@id='bodatoda010']/option";
+var nodesMultiple = xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE, null);
+ ponerDatosMultiple1Html(tituloMultiple,nodesMultiple);
  respuestaSelect4=parseInt(xmlDoc.getElementsByTagName("answer")[10].innerHTML);
  respuestaSelect41=parseInt(xmlDoc.getElementsByTagName("answer")[11].innerHTML);
  respuestaSelect42=parseInt(xmlDoc.getElementsByTagName("answer")[12].innerHTML);
  respuestaSelect43=parseInt(xmlDoc.getElementsByTagName("answer")[13].innerHTML);
 
-
+}
   function ponerTitulo(t){
 	document.getElementsByTagName('h3')[0].innerHTML=t;
   }
@@ -163,114 +143,142 @@ var xmlDoc = dadesXml.responseXML;
 	document.getElementsByTagName('h3')[1].innerHTML=t;
   }
   
-  function ponerDatosCheckboxHtml(t,opt){
+  function ponerDatosCheckboxHtml(t,nodes){
  var checkboxContainer=document.getElementById('div1');
  document.getElementById('bodatoda003').innerHTML = t;
- for (i = 0; i < opt.length; i++) { 
-    var input = document.createElement("input");
-    var label = document.createElement("label");
-    label.innerHTML=opt[i];
-    label.setAttribute("for", "color_"+i);
-    input.type="checkbox";
-    input.name="color";
-    input.id="color_"+i;;    
-    checkboxContainer.appendChild(input);
-    checkboxContainer.appendChild(label);
- }  
+ var result = nodes.iterateNext();
+ i=0;
+ while(result){
+	 var input = document.createElement("input");
+	 var label = document.createElement("label");
+	 label.innerHTML = result.innerHTML;
+	 label.setAttribute("for","color"+i);
+	 input.type="checkbox";
+	 input.name="color";
+	 input.id="color"+i;i++;
+	 checkboxContainer.appendChild(input);
+	 checkboxContainer.appendChild(label);
+	 checkboxContainer.appendChild(document.createElement("br"));
+	 result = nodes.iterateNext();
+ }
 }
 
-  function ponerDatosCheckHtml(ti,opti){
+  function ponerDatosCheckHtml(ti,nodes){
  var checkContainer=document.getElementById('div2');
  document.getElementById('bodatoda004').innerHTML = ti;
- for (i = 0; i < opti.length; i++) { 
-    var input = document.createElement("input");
-    var label = document.createElement("label");
-    label.innerHTML=opti[i];
-    label.setAttribute("for", "color2_"+i);
-    input.type="checkbox";
-    input.name="color2";
-    input.id="color2_"+i;;    
-    checkContainer.appendChild(input);
-    checkContainer.appendChild(label);
- }  
+var result =nodes.iterateNext();
+i=0;
+while(result){
+	var input= document.createElement("input");
+	var label = document.createElement("label");
+	label.innerHTML = result.innerHTML;
+	label.setAttribute("for","color_"+i);
+	input.type="checkbox";
+	input.name="color2";
+	input.id="color_"+i;i++;
+	checkContainer.appendChild(input);
+	checkContainer.appendChild(label);
+	checkContainer.appendChild(document.createElement("br"));
+	result = nodes.iterateNext();
+}
 }
 
-
-function ponerDatosSelectHtml(tu,optu){
+ 
+function ponerDatosSelectHtml(tu,nodes){
   document.getElementById("bodatoda005").innerHTML=tu;
   var select = document.getElementsByTagName("select")[0];
-  for (i = 0; i < optu.length; i++) { 
-    var option = document.createElement("option");
-    option.text = optu[i];
-    option.value=i+1;
-    select.options.add(option);
- }  
+  var result = nodes.iterateNext();
+  i=0;
+  while(result){
+	  var option = document.createElement("option");
+	  option.text = result.innerHTML;
+	  option.value=i+1;i++;
+	  select.options.add(option);
+	  result=nodes.iterateNext();
+  }
 }
-
-function ponerDatosSelectHtmlx(tx,optx){
+ 
+function ponerDatosSelectHtmlx(tx,nodes){
   document.getElementById("bodatoda006").innerHTML=tx;
   var select = document.getElementsByTagName("select")[1];
-  for (i = 0; i < optx.length; i++) { 
-    var option = document.createElement("option");
-    option.text = optx[i];
-    option.value=i+1;
-    select.options.add(option);
- }  
+var result = nodes.iterateNext();
+i=0;
+while(result){
+	var option = document.createElement("option");
+	option.text = result.innerHTML;
+	option.value=i+1;i++;
+	select.options.add(option);
+	result=nodes.iterateNext();
 }
-
-  function ponerDatosRadioHtml(t,opt){
+}
+ 
+  function ponerDatosRadioHtml(t,nodes){
  var checkboxContainer=document.getElementById('div3');
  document.getElementById('bodatoda007').innerHTML = t;
- for (i = 0; i < opt.length; i++) { 
-    var input = document.createElement("input");
-    var label = document.createElement("label");
-    label.innerHTML=opt[i];
-    label.setAttribute("for", "color3_"+i);
-    input.type="radio";
-    input.name="color3";
-    input.id="color3_"+i;;    
-    checkboxContainer.appendChild(input);
-    checkboxContainer.appendChild(label);
- }  
+var result = nodes.iterateNext();
+i=0;
+while(result){
+	var input= document.createElement("input");
+	var label = document.createElement("label");
+	label.innerHTML = result.innerHTML;
+	label.setAttribute("for","color_"+i);
+	input.type="radio";
+	input.name="color3";
+	input.id="color_"+i;i++;
+	checkboxContainer.appendChild(input);
+	checkboxContainer.appendChild(label);
+	checkboxContainer.appendChild(document.createElement("br"));
+	result = nodes.iterateNext();
 }
-  function ponerDatosRadio1Html(t,opt){
+  }
+  function ponerDatosRadio1Html(t,nodes){
  var checkboxContainer=document.getElementById('div4');
  document.getElementById('bodatoda008').innerHTML = t;
- for (i = 0; i < opt.length; i++) { 
-    var input = document.createElement("input");
-    var label = document.createElement("label");
-    label.innerHTML=opt[i];
-    label.setAttribute("for", "color4_"+i);
-    input.type="radio";
-    input.name="color4";
-    input.id="color4_"+i;;    
-    checkboxContainer.appendChild(input);
-    checkboxContainer.appendChild(label);
- }  
+var result = nodes.iterateNext();
+i=0;
+while(result){
+	var input= document.createElement("input");
+	var label = document.createElement("label");
+	label.innerHTML = result.innerHTML;
+	label.setAttribute("for","color_"+i);
+	input.type="radio";
+	input.name="color4";
+	input.id="color_"+i;i++;
+	checkboxContainer.appendChild(input);
+	checkboxContainer.appendChild(label);
+	checkboxContainer.appendChild(document.createElement("br"));
+	result = nodes.iterateNext();
+} 
 }
 
-function ponerDatosMultipleHtml(tu,optu){
+function ponerDatosMultipleHtml(tu,nodes){
   document.getElementById("bodatoda009").innerHTML=tu;
   var multiple = document.getElementsByTagName("select")[2];
-  for (i = 0; i < optu.length; i++) { 
-    var option = document.createElement("option");
-    option.text = optu[i];
-    option.value=i+1;
-    multiple.options.add(option);
- }  
+   var result = nodes.iterateNext();
+  i=0;
+  while(result){
+	  var option = document.createElement("option");
+	  option.text = result.innerHTML;
+	  option.value=i+1;i++;
+	  multiple.options.add(option);
+	  result=nodes.iterateNext();
+  }
 }
 
-function ponerDatosMultiple1Html(tu,optu){
+function ponerDatosMultiple1Html(tu,nodes){
   document.getElementById("bodatoda010").innerHTML=tu;
   var multiple = document.getElementsByTagName("select")[3];
-  for (i = 0; i < optu.length; i++) { 
-    var option = document.createElement("option");
-    option.text = optu[i];
-    option.value=i+1;
-    multiple.options.add(option);
- }  
+  var result = nodes.iterateNext();
+  i=0;
+  while(result){
+	  var option = document.createElement("option");
+	  option.text = result.innerHTML;
+	  option.value=i+1;i++;
+	  multiple.options.add(option);
+	  result=nodes.iterateNext();
+  }
 }
-}
+
 
 function corregirSelect(){
   var sel = formElement.elements[13];  
@@ -437,4 +445,93 @@ function corregirRadio2(){
 
 function mostrar(){
 document.getElementById('resultadosDiv').style.display = 'block';}
+
+function comprobar(){
+	var f=formElement;
+	var checkeado=false;
+	var checkeado2=false;
+	var checkeado3=false;
+	var checkeado4=false;
+	
+	for(i=0;i<f.color.length;i++){
+		if(f.color[i].checked) {checkeado = true;}
+	}
+	
+	for(i=0;i<f.color2.length;i++){
+		if(f.color2[i].checked) {checkeado2 = true;}
+	}
+	
+	for(i=0;i<f.color3.length;i++){
+		if(f.color3[i].checked) {checkeado3 = true;}
+	}
+	
+	for(i=0;i<f.color4.length;i++){
+		if(f.color4[i].checked) {checkeado4 = true;}
+	}
+	
+	if(f.elements[0].value==""){
+			f.elements[0].focus();
+			alert("No has contestado la primera pregunta");
+			return false;
+	}else
+	
+	if(f.elements[1].value==""){
+		f.elements[1].focus();
+		alert("No has contestado la segunda pregunta");
+		return false;
+	}else
+	
+	if(f.elements[13].selectedIndex==0){
+		f.elements[13].focus();
+		alert("No has contestado a la quinta pregunta");
+		return false;
+	}else
+		
+	if(f.elements[14].selectedIndex==0){
+		f.elements[14].focus();
+		alert("No has contestado a la sexta pregunta");
+		return false;
+	}else
+		
+	if(f.elements[23].selectedIndex!=0&&f.elements[23].selectedIndex!=1&&f.elements[23].selectedIndex!=2&&f.elements[23].selectedIndex!=3){
+		f.elements[23].scrollIntoView();
+		alert("No has contestado a la novena pregunta");
+		return false;
+	}else
+		
+	if(f.elements[24].selectedIndex!=0&&f.elements[24].selectedIndex!=1&&f.elements[24].selectedIndex!=2&&f.elements[24].selectedIndex!=3&&f.elements[24].selectedIndex!=4&&
+	f.elements[24].selectedIndex!=5&&f.elements[24].selectedIndex!=6&&f.elements[24].selectedIndex!=7&&f.elements[24].selectedIndex!=8&&f.elements[24].selectedIndex!=9&&
+	f.elements[24].selectedIndex!=10&&f.elements[24].selectedIndex!=11&&f.elements[24].selectedIndex!=12&&f.elements[24].selectedIndex!=13&&f.elements[24].selectedIndex!=14&&
+	f.elements[24].selectedIndex!=15&&f.elements[24].selectedIndex!=16&&f.elements[24].selectedIndex!=17&&f.elements[24].selectedIndex!=18&&f.elements[24].selectedIndex!=19&&
+	f.elements[24].selectedIndex!=20&&f.elements[24].selectedIndex!=21&&f.elements[24].selectedIndex!=22&&f.elements[24].selectedIndex!=23&&f.elements[24].selectedIndex!=24&&
+	f.elements[24].selectedIndex!=25&&f.elements[24].selectedIndex!=26&&f.elements[24].selectedIndex!=27&&f.elements[24].selectedIndex!=28){
+		f.elements[24].scrollIntoView();
+		alert("No has contestado a la décima pregunta");
+		return false;
+	}else
+		
+	if(!checkeado){
+		document.getElementsByTagName("h3")[2].focus();
+		alert("No has respondido a la tercera pregunta");
+		return false;
+	}else
+	
+	if(!checkeado2){
+		document.getElementsByTagName("h3")[3].focus();
+		alert("No has respondido a la cuarta pregunta");
+		return false;
+	}
+	
+	if(!checkeado3){
+		document.getElementsByTagName("h3")[6].focus();
+		alert("No has respondido a la séptima pregunta");
+		return false;
+	}else
+	
+	if(!checkeado4){
+		document.getElementsByTagName("h3")[7].focus();
+		alert("No has respondido a la octava pregunta");
+		return false;
+	}else{return true;}
+	
 }
