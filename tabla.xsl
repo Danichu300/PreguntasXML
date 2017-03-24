@@ -6,9 +6,11 @@
 <html>
 <head>
 <style rel="stylesheet" type="text/css">
-table{width:100%;border:1px solid}
+table{width:100%;border:1px solid;}
 th{background-color:#cdd8f6}
-td,tr,th{border:1px solid;padding:2px;vertical-align:top}
+td{background-color:#FFFFFF;border:1px solid;padding:2px;vertical-align:top}
+tr{background-color:#FFFFFF;border:1px solid;padding:2px;vertical-align:top}
+th{background-color:#4478EF;border:1px solid;padding:2px;vertical-align:top}
 span{color:green;padding-left:5px}
 </style>
 </head>
