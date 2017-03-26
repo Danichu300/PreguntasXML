@@ -30,7 +30,7 @@ span{color:green;padding-left:5px}
 </style>
 </head>
 <body background="img/fondorandom.jpg">
-  <h2>Corrección</h2>
+ <div id='textocorreccion'><h2>Corrección Bizarra</h2></div>
   <table>
     <tr>
       <th>Pregunta</th>
