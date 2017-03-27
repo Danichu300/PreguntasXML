@@ -7,7 +7,6 @@
 <head>
 <style rel="stylesheet" type="text/css">
 table{width:100%;border:1px solid;}
-th{background-color:green}
 td{background-color:aqua;border:1px solid;padding:2px;vertical-align:top;color:darkblue;text-shadow: 0 0 10px #fff,
 0 0 20px #fff,
 0 0 30px #fff,
