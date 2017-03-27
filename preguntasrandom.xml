@@ -46,7 +46,7 @@
 <question id='bodatoda005'>
 <type>select</type>
 		<title>Negro por fuera amarillo por dentro, ¿ qué es?</title>
-			<option>Un mango</option>
+			<option>Selecciona...</option>
 			<option>Un Mago</option>
 			<option>Un pollo ninja</option>
 			<option>Un pepino zombi</option>
@@ -58,7 +58,7 @@
 <question id='bodatoda006'>
 <type>select</type>
 		<title>¿Cuál es la opción correcta?</title>
-			<option>La</option>
+			<option>Selecciona -> La</option>
 			<option>Respuesta</option>
 			<option>Es</option>
 			<option>La última</option>
