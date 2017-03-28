@@ -1,18 +1,13 @@
 # PreguntasXML
 
-####INFORMACIÓN DEL PROYECTO
+#### INFORMACIÓN DEL PROYECTO
 
-Éste es un formulario creado con XML implementado a través de un HTML y retocado con CSS y JavaScript. La finalidad del proyecto es crear un examen que sea capaz de autocorregirse.
+Éste es un formulario creado con XML implementado a través de un HTML y retocado con CSS y JavaScript. La finalidad del proyecto es crear un examen que sea capaz de autocorregirse. En esta rama se encuentra una modificación del proyecto original en la que se ha implementado el paso de las preguntas a través de XPath.
 
-####OBJETIVOS CUMPLIDOS
+#### OBJETIVOS CUMPLIDOS
 
-- Las 10 preguntas del examen se muestran correctamente al igual que sus respuestas.
-- Todas las correcciones de preguntas se han implementado correctamente.
-- Visualmente resulta atractivo y generalmente se muestra todo bien posicionado y cómodo.
-- Objetivo extra: Se ha implementado un panel de instrucciones sobre la correcta realización del formulario.
-
-####OBJETIVOS FALLIDOS
-
-- En la versión de móvil el margen se ve demasiado grande, por lo que resulta visualmente incómodo.
-- El tamaño de las letras en la versión horizontal deberían ser más grandes (a observación del corrector).
-- Las correcciones deberían mostrarse de forma más presentable y decorada.
+- Las preguntas se muestran perfectamente a través de sus paths correspondientes.
+- Las respuestas también se visualizan correctamente.
+- Se ha implementado una función para forzar al usuario a contestar todas las preguntas.
+- Se ha añadido un xsl de modo que el archivo xml puede abrirse y mostrarse como una tabla con las preguntas, las respuestas y la respuesta correcta de cada una.
+- Mejoras estéticas.
